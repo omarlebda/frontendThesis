@@ -8,11 +8,11 @@ export default function UserDetails({match}) {
     const [userError, setUserError] = useState([])
 
     useEffect(() => {
-        fetchUserById(id).then(res => console.log(res)).catch(err => console.log(err))     
+        fetchUserById(id).then(res => setUser(res)).catch(err => setUserError(err))     
     }, [id])
     return (
         <div>
-            <h1>{id}</h1>
+            <h1>{user.username}</h1>
         </div>
     )
 }
