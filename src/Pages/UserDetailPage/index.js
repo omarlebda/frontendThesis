@@ -1,6 +1,12 @@
 import { CompareArrowsOutlined } from "@material-ui/icons"
 import { useEffect, useState } from "react"
+import Graduation from "../../Components/Card/Graduation"
+import PersonalInfo from "../../Components/Card/PersonalInfo"
 import { fetchUserById } from "../../Requests/profile"
+import React, {Fragment} from 'react';
+import Header from "../../Components/Header/Header"
+
+
 
 export default function UserDetails({match}) {
     const id = match.params.id
@@ -11,8 +17,10 @@ export default function UserDetails({match}) {
         fetchUserById(id).then(res => setUser(res)).catch(err => setUserError(err))     
     }, [id])
     return (
-        <div>
-            <h1>{user.username}</h1>
-        </div>
+        <Fragment>
+            <Header key={user.id} user={user}/>
+            <PersonalInfo key={user.id} user={user} />
+            
+        </Fragment>
     )
 }
