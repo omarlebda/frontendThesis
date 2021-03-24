@@ -5,6 +5,9 @@ import PersonalInfo from "../../Components/Card/PersonalInfo"
 import { fetchUserById } from "../../Requests/profile"
 import React, {Fragment} from 'react';
 import Header from "../../Components/Header/Header"
+import Hero from "../../Components/Hero/Hero"
+import Resume from "../../Components/Resume/Resume"
+import ToggleButton from "../../Components/Header/ToggleButton"
 
 
 
@@ -19,7 +22,11 @@ export default function UserDetails({match}) {
     return (
         <Fragment>
             <Header key={user.id} user={user}/>
-            <PersonalInfo key={user.id} user={user} />
+            <ToggleButton/>
+            <Hero />
+            <main id="main">
+                <Resume key={user.id} user={user}/>
+            </main>
             
         </Fragment>
     )

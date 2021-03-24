@@ -6,7 +6,7 @@ export default function Header({user}) {
     return (
         
         
-
+        
         <header id="header">
             <div class="d-flex flex-column">
                 <div class="profile">
