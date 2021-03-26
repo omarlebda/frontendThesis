@@ -8,6 +8,7 @@ import Header from "../../Components/Header/Header"
 import Hero from "../../Components/Hero/Hero"
 import Resume from "../../Components/Resume/Resume"
 import ToggleButton from "../../Components/Header/ToggleButton"
+import About from "../../Components/About/About"
 
 
 
@@ -23,8 +24,9 @@ export default function UserDetails({match}) {
         <Fragment>
             <Header key={user.id} user={user}/>
             <ToggleButton/>
-            <Hero />
+            <Hero key={user.id} user={user}/>
             <main id="main">
+                <About  key={user.id} user={user}/>
                 <Resume key={user.id} user={user}/>
             </main>
             
