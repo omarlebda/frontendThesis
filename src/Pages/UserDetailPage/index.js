@@ -9,6 +9,7 @@ import Hero from "../../Components/Hero/Hero"
 import Resume from "../../Components/Resume/Resume"
 import ToggleButton from "../../Components/Header/ToggleButton"
 import About from "../../Components/About/About"
+import GraduationProject from "../../Components/GraduationProject/GraduationProject"
 
 
 
@@ -28,6 +29,7 @@ export default function UserDetails({match}) {
             <main id="main">
                 <About  key={user.id} user={user}/>
                 <Resume key={user.id} user={user}/>
+                <GraduationProject key={user.id} user={user}/>
             </main>
             
         </Fragment>
