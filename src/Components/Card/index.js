@@ -6,9 +6,6 @@ export default function Index({user}) {
 
     let history = useHistory();
 
-    const handleClick = () =>{
-        history.push(`/${user.id}`)
-    }
 
     return (
         <Card style={{padding: 20}}>

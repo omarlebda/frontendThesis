@@ -6,11 +6,12 @@ import { useSelector } from 'react-redux'
 
 export default function RegisterPage({ history }) {
     const { isAuthenticated } = useSelector(state => state.auth);
+    
     useEffect(() => {
         if (isAuthenticated) {
             history.push('/')
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, history])
     return (
         <div className='login_screen'>
             <RegisterForm />

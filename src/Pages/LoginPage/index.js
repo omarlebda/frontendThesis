@@ -13,7 +13,7 @@ export default function LoginScreen({history}) {
        if (isAuthenticated){
         history.push('/')
        }
-    }, [isAuthenticated])
+    }, [isAuthenticated, history])
 
     return (
         <div className='login_screen'>

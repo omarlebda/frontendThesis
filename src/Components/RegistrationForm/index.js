@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -26,7 +25,7 @@ export default function RegisterForm() {
 
 
     const dispatch = useDispatch()
-    const { isAuthenticated, error } = useSelector(state => state.auth)
+    const { error } = useSelector(state => state.auth)
 
     const handleSubmit = (values) => {
         const { username, email, password } = values
