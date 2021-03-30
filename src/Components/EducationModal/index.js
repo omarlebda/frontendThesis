@@ -23,10 +23,10 @@ const validationSchema = Yup.object({
     groupNumber: Yup.number().required().min(5),
     desc: Yup.string().required().min(14),
 
-  });
+});
 
 
-export default function EducationModal({ title, buttonTitle, handleSubmit, open, setOpen }) {
+export default function EducationModal({ title, buttonTitle, handleSubmit, open, setOpen, data }) {
 
 
     const handleClose = () => {
@@ -48,30 +48,30 @@ export default function EducationModal({ title, buttonTitle, handleSubmit, open,
                 <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
                 <DialogContent>
                     <Formik
-                        initialValues={{ 
-                            faculty: '',
-                            university: '',
-                            desc: '',
-                            yearOfGraduation: '',
-                            degree: '',
-                            groupNumber: ''
-                         }}
+                        initialValues={{
+                            faculty: data?.faculty || '',
+                            university: data?.university || '',
+                            desc: data?.description || '',
+                            yearOfGraduation: data?.yearOfGraduation || '',
+                            degree: data?.degree || '',
+                            groupNumber: data?.groupNumber || ''
+                        }}
                         validationSchema={validationSchema}
-                        onSubmit={handleSubmit}
-                        
+                        onSubmit={(values )=> handleSubmit(values)}
+
                     >
                         {({ dirty, isSubmitting, isValid }) => (
 
-                            <Form className='flex_col' autoComplete='off' style={{width: 400}}>
+                            <Form className='flex_col' autoComplete='off' style={{ width: 400 }}>
                                 <FromText label="Faculty" name='faculty' />
                                 <FromText label="University" name='university' />
                                 <FromText label="Year Of Graduation" name='yearOfGraduation' />
                                 <FromText label="Degree" name='degree' />
                                 <FromText label="Group Number" name='groupNumber' />
                                 <FromText label="Description" name='desc' />
-                                <div style={{marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
-                                    <Button type='submit' color="primary" disabled={!dirty || !isValid ||isSubmitting }>
-                                        {buttonTitle} 
+                                <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
+                                    <Button type='submit' color="primary" disabled={!dirty || !isValid || isSubmitting}>
+                                        {buttonTitle}
                                     </Button>
                                 </div>
                             </Form>

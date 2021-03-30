@@ -4,12 +4,17 @@ import ModalEducation from '../EducationModal'
 import { IconButton } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createNewGraduation } from "../../Redux/Graduation/GraduationActions";
+import { useSnackbar } from 'notistack';
+
 export default function Resume({ user, inverted }) {
 
   const [open, setOpen] = useState(false);
+  const { success } = useSelector(state => state.createGraduation)
   const dispatch = useDispatch()
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = (values) => {
     const { faculty, university, desc: description, degree, groupNumber, yearOfGraduation } = values;
@@ -22,6 +27,14 @@ export default function Resume({ user, inverted }) {
       groupNumber: groupNumber.toString(),
       description
     }))
+    if (success) {
+      enqueueSnackbar('Success, Createed ', { variant: 'success' })
+      setOpen(false)
+
+    } else {
+      enqueueSnackbar('Oops, teed ', { variant: 'error' })
+
+    }
   }
 
 
@@ -45,7 +58,7 @@ export default function Resume({ user, inverted }) {
 
               </div>
               {user?.graduation?.map((graduation) => (
-                <Education key={graduation.id} graduation={graduation} inverted={inverted} />
+                <Education key={graduation.id} graduation={graduation} inverted={inverted} user={user} />
               ))
               }
             </div>
@@ -60,12 +73,12 @@ export default function Resume({ user, inverted }) {
 
         </div>
       </section>
-      <ModalEducation 
-        open={open} 
-        setOpen={setOpen} 
-        title='Create New Education Degree' 
-        buttonTitle='Create' 
-        handleSubmit={handleSubmit} 
+      <ModalEducation
+        open={open}
+        setOpen={setOpen}
+        title='Create New Education Degree'
+        buttonTitle='Create'
+        handleSubmit={handleSubmit}
       />
     </>
   )

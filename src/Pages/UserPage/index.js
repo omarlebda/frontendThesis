@@ -11,7 +11,7 @@ export default function Users() {
 
   const [users, setUsers] = useState([])
   const [usersError, setUsersError] = useState([])
-  const { isAuthenticated } = useSelector(state=> state.auth)
+  const { isAuthenticated } = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
 
@@ -26,8 +26,8 @@ export default function Users() {
   if (users.length < 1) return <Loading />
   return (
     <>
-      {isAuthenticated && <CustomButton title='logout' onClick={()=>{
-          dispatch(userLogout())
+      {isAuthenticated && <CustomButton title='logout' onClick={() => {
+        dispatch(userLogout())
       }} />}
       <div className='flex_wrap'>
         {users?.map(user => <Card key={user.id} user={user} />)}

@@ -7,6 +7,9 @@ import UserDetails from './Pages/UserDetailPage';
 import Navbar from './Components/Navbar/Navbar'
 import LoginScreen from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
+import { SnackbarProvider, useSnackbar } from "notistack";
+
+
 
 function App() {
 
@@ -14,13 +17,20 @@ function App() {
 
   return (
     <div className="App" >
-      
+      <SnackbarProvider
+       anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+    }}
+      >
        <Switch>
           <Route exact path='/' component={Users} />
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/register' component={RegisterPage} />
           <Route  path='/:id' component={UserDetails} />
        </Switch>
+
+      </SnackbarProvider>
     </div>
   );
 }
