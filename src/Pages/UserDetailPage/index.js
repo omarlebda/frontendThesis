@@ -11,6 +11,7 @@ import ToggleButton from "../../Components/Header/ToggleButton"
 import About from "../../Components/About/About"
 import GraduationProject from "../../Components/GraduationProject/GraduationProject"
 import { useSelector } from "react-redux"
+import EducationModal from "../../Components/EducationModal"
 
 
 
@@ -34,7 +35,7 @@ export default function UserDetails({match}) {
                 <Resume key={user.id} user={user} inverted={inverted}/>
                 <GraduationProject key={user.id} user={user}/>
             </main>
-            
+            <EducationModal />
         </Fragment>
     )
 }

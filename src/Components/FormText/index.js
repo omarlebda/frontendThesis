@@ -6,7 +6,7 @@ const FormText = ({ label, ...props }) =>{
 
     const [field, meta] = useField(props);
     return(
-        <FormControl style={{width: '100%'}}  error={meta.touched && !!meta.error}>
+        <FormControl style={{width: '100%', marginBottom: 20}}  error={meta.touched && !!meta.error}>
             <TextField 
                 className='input'  
                 // variant='outlined' 
@@ -20,7 +20,7 @@ const FormText = ({ label, ...props }) =>{
                 }}
             />
             {meta.error && meta.touched ? (
-                <label className='label' >
+                <label className='label' style={{marginTop: 12, color: 'red'}} >
                 {meta.error}
                 </label>
             ) : undefined}
