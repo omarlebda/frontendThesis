@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,8 +7,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import * as Yup from 'yup'
-import { Form, Formik } from 'formik';
+import { Form, Formik, Field } from 'formik';
 import FromText from '../FormText'
+import FormikSelect from '../FormikSelect'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -16,23 +17,21 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 const validationSchema = Yup.object({
-    faculty: Yup.string().required().min(5, 'Invalid Faculty'),
-    degree: Yup.string().required().min(4),
-    yearOfGraduation: Yup.string().required().min(4),
-    university: Yup.string().required().min(4),
-    groupNumber: Yup.number().required().min(5),
-    desc: Yup.string().required().min(14),
-
+    position: Yup.string().required().min(4),
+    startDate: Yup.date().required("Start date is required"),
+    endDate: Yup.date().required("End date is required"),
 });
 
 
-export default function EducationModal({ title, buttonTitle, handleSubmit, open, setOpen, data }) {
+export default function WorkModal({ title, buttonTitle, handleSubmit, open, setOpen, data, company, work }) {
 
+
+    const [selectedValue, setSelectedValue] = useState('')
 
     const handleClose = () => {
         setOpen(false);
     };
-
+    // console.log(company, 'com')
 
     return (
         <div>
@@ -49,26 +48,23 @@ export default function EducationModal({ title, buttonTitle, handleSubmit, open,
                 <DialogContent>
                     <Formik
                         initialValues={{
-                            faculty: data?.faculty || '',
-                            university: data?.university || '',
-                            desc: data?.description || '',
-                            yearOfGraduation: data?.yearOfGraduation || '',
-                            degree: data?.degree || '',
-                            groupNumber: data?.groupNumber || ''
+                            position: work?.position || '',
+                            startDate: work?.startDate || '',
+                            endDate: work?.endDate || '',
+                            company: work?.company || [],
+
                         }}
                         validationSchema={validationSchema}
                         onSubmit={(values) => handleSubmit(values)}
 
                     >
-                        {({ dirty, isSubmitting, isValid }) => (
+                        {({ dirty, isSubmitting, isValid, values }) => (
 
                             <Form className='flex_col' autoComplete='off' style={{ width: 400 }}>
-                                <FromText label="Faculty" name='faculty' />
-                                <FromText label="University" name='university' />
-                                <FromText label="Year Of Graduation" name='yearOfGraduation' />
-                                <FromText label="Degree" name='degree' />
-                                <FromText label="Group Number" name='groupNumber' />
-                                <FromText label="Description" name='desc' />
+                                <FromText label="Position" name='position' />
+                                <FromText label="Start Date" name='startDate' placeholder="mm/dd/yyyy" />
+                                <FromText label="End Date" name='endDate' placeholder="mm/dd/yyyy" />
+                                <FormikSelect label='Company' name='company' options={company} />
                                 <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
                                     <Button type='submit' color="primary" disabled={!dirty || !isValid || isSubmitting}>
                                         {buttonTitle}

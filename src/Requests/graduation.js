@@ -10,3 +10,5 @@ export const deleteGraduationById = async (id) => {
 export const updateGraduationById = async (id, values) => {
     return await axios.put(`${baseURL}/api/v1/edit_or_delete_graduation/${id}/`, values)
 }
+
+

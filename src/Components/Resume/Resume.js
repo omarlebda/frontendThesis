@@ -1,16 +1,19 @@
 import Education from "../Education/Education";
 import Work from "../Work/Work";
 import ModalEducation from '../EducationModal'
+import WordModal from '../WorkModal'
 import { IconButton } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewGraduation } from "../../Redux/Graduation/GraduationActions";
+import { createNewWork } from "../../Redux/Work/WorkActions";
 import { useSnackbar } from 'notistack';
 
-export default function Resume({ user, inverted }) {
+export default function Resume({ user, inverted, company }) {
 
   const [open, setOpen] = useState(false);
+  const [openWork, setOpenWork] = useState(false);
   const { success } = useSelector(state => state.createGraduation)
   const dispatch = useDispatch()
 
@@ -26,6 +29,26 @@ export default function Resume({ user, inverted }) {
       faculty,
       groupNumber: groupNumber.toString(),
       description
+    }))
+    if (success) {
+      enqueueSnackbar('Success, Createed ', { variant: 'success' })
+      setOpen(false)
+
+    } else {
+      enqueueSnackbar('Oops, teed ', { variant: 'error' })
+
+    }
+  }
+
+  const handleWorkSubmit = (values) => {
+    const { position, startDate, endDate, company } = values;
+    console.log(values);
+    dispatch(createNewWork({
+      alumni: user.id,
+      position,
+      startDate,
+      endDate,
+      company,
     }))
     if (success) {
       enqueueSnackbar('Success, Createed ', { variant: 'success' })
@@ -63,9 +86,15 @@ export default function Resume({ user, inverted }) {
               }
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="resume-title">Professional Experience</h3>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <h3 class="resume-title">Professional Experience</h3>
+                {inverted && <IconButton style={{ marginLeft: 20 }} onClick={() => setOpenWork(true)}>
+                  <AddIcon style={{ color: '#149DDD' }} />
+                </IconButton>
+                }
+              </div>
               {user?.work?.map((work) => (
-                <Work key={work.id} work={work} />
+                <Work key={work.id} work={work} inverted={inverted} user={user} />
               ))
               }
             </div>
@@ -79,6 +108,14 @@ export default function Resume({ user, inverted }) {
         title='Create New Education Degree'
         buttonTitle='Create'
         handleSubmit={handleSubmit}
+      />
+      <WordModal
+        open={openWork}
+        setOpen={setOpenWork}
+        title='Create New Work Experience'
+        buttonTitle='Create'
+        handleSubmit={handleWorkSubmit}
+        company={company}
       />
     </>
   )
