@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import Graduation from "../../Components/Card/Graduation"
 import PersonalInfo from "../../Components/Card/PersonalInfo"
 import { fetchUserById, fetchCompanies } from "../../Requests/profile"
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import Header from "../../Components/Header/Header"
 import Hero from "../../Components/Hero/Hero"
 import Resume from "../../Components/Resume/Resume"
@@ -15,7 +15,7 @@ import EducationModal from "../../Components/EducationModal"
 
 
 
-export default function UserDetails({match}) {
+export default function UserDetails({ match }) {
     const id = match.params.id
     const [user, setUser] = useState({})
     const [company, setCompany] = useState({})
@@ -23,22 +23,22 @@ export default function UserDetails({match}) {
     const { currentUser } = useSelector(state => state.auth)
 
     useEffect(() => {
-        fetchUserById(id).then(res => setUser(res)).catch(err => setUserError(err))     
+        fetchUserById(id).then(res => setUser(res)).catch(err => setUserError(err))
     }, [id])
 
     useEffect(() => {
-        fetchCompanies().then(res => setCompany(res)).catch(err => setUserError(err))     
+        fetchCompanies().then(res => setCompany(res)).catch(err => setUserError(err))
     }, [])
     const inverted = user?.user_id === currentUser?.id ? true : false
     return (
         <Fragment>
-            <Header key={user.id} user={user}/>
-            <ToggleButton/>
-            <Hero key={user.id} user={user}/>
+            <Header key={user.id} user={user} />
+            <ToggleButton />
+            <Hero key={user.id} user={user} />
             <main id="main">
-                <About  key={user.id} user={user} />
-                <Resume key={user.id} user={user} inverted={inverted} company={company}/>
-                <GraduationProject key={user.id} user={user}/>
+                <About key={user.id} user={user} inverted={inverted} />
+                <Resume key={user.id} user={user} inverted={inverted} company={company} />
+                <GraduationProject key={user.id} user={user} />
             </main>
             <EducationModal />
         </Fragment>

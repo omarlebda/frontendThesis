@@ -18,3 +18,8 @@ export const fetchCompanies = async () => {
     const { data } = await axios.get(`${baseURL}/api/v1/companies`)
     return data;
 }
+
+
+export const updateProfileById = async (id, values) => {
+    return await axios.put(`${baseURL}/api/v1/edit_profile/${id}/`, values)
+}

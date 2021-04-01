@@ -8,12 +8,17 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewGraduation } from "../../Redux/Graduation/GraduationActions";
 import { createNewWork } from "../../Redux/Work/WorkActions";
+import {updateProfileById} from "../../Requests/profile"
 import { useSnackbar } from 'notistack';
+import ProfileModal from '../ProfileModal'
+
 
 export default function Resume({ user, inverted, company }) {
 
   const [open, setOpen] = useState(false);
   const [openWork, setOpenWork] = useState(false);
+
+
   const { success } = useSelector(state => state.createGraduation)
   const dispatch = useDispatch()
 
@@ -59,6 +64,9 @@ export default function Resume({ user, inverted, company }) {
 
     }
   }
+
+
+  
 
 
   return (
@@ -117,6 +125,7 @@ export default function Resume({ user, inverted, company }) {
         handleSubmit={handleWorkSubmit}
         company={company}
       />
+      
     </>
   )
 }
