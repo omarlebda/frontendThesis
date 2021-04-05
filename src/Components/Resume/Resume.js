@@ -102,7 +102,7 @@ export default function Resume({ user, inverted, company }) {
                 }
               </div>
               {user?.work?.map((work) => (
-                <Work key={work.id} work={work} inverted={inverted} user={user} />
+                <Work key={work.id} work={work} inverted={inverted} user={user} company={company} />
               ))
               }
             </div>

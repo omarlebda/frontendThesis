@@ -9,7 +9,7 @@ import WordModal from '../WorkModal'
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { setNestedObjectValues } from 'formik';
-export default function Work({ work, inverted, user }) {
+export default function Work({ work, inverted, user, company }) {
 
     const { enqueueSnackbar } = useSnackbar();
     const [open, setOpen] = useState(false)
@@ -56,6 +56,8 @@ export default function Work({ work, inverted, user }) {
                 buttonTitle='Update'
                 handleSubmit={handleUpdateWork}
                 work={work}
+                curr_company={work.company}
+                company={company}
             />
         </>
     )

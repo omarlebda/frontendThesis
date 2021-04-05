@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 });
 
 
-export default function WorkModal({ title, buttonTitle, handleSubmit, open, setOpen, data, company, work }) {
+export default function WorkModal({ title, buttonTitle, handleSubmit, open, setOpen, data, company, work, curr_company }) {
 
 
     const [selectedValue, setSelectedValue] = useState('')
@@ -51,7 +51,7 @@ export default function WorkModal({ title, buttonTitle, handleSubmit, open, setO
                             position: work?.position || '',
                             startDate: work?.startDate || '',
                             endDate: work?.endDate || '',
-                            company: work?.company || [],
+                            company: work?.company.id || [],
 
                         }}
                         validationSchema={validationSchema}
@@ -64,7 +64,7 @@ export default function WorkModal({ title, buttonTitle, handleSubmit, open, setO
                                 <FromText label="Position" name='position' />
                                 <FromText label="Start Date" name='startDate' placeholder="mm/dd/yyyy" />
                                 <FromText label="End Date" name='endDate' placeholder="mm/dd/yyyy" />
-                                <FormikSelect label='Company' name='company' options={company} />
+                                <FormikSelect label='Company' name='company' options={company} curr_company={curr_company} />
                                 <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
                                     <Button type='submit' color="primary" disabled={!dirty || !isValid || isSubmitting}>
                                         {buttonTitle}
