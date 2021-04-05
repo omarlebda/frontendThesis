@@ -29,7 +29,6 @@ export default function About({ user, inverted }) {
             last_name } = values;
         console.log(values);
         dispatch(updateProfileById(user?.id, {
-            profile_pic: user.profile_pic,
             email,
             phone_number,
             bio,
