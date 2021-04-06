@@ -37,7 +37,7 @@ const MenuProps = {
 
 
 
-export default function FormikSelect({ label, curr_company, options, ...props }) {
+export default function FormikSelect({ label, curr_grad, curr_company, options, ...props }) {
     const classes = useStyles();
 
     const [field, meta, helpers] = useField(props);
@@ -64,8 +64,9 @@ export default function FormikSelect({ label, curr_company, options, ...props })
             // input={<Input />}
             >
                 {curr_company && <MenuItem key={curr_company.id} value={curr_company.id}>{curr_company.name} </MenuItem>}
+                {curr_grad && <MenuItem key={curr_grad.id} value={curr_grad.id}>{curr_grad.degree} </MenuItem>}
                 {options && !!options.length && options?.map(option => (
-                    <MenuItem key={option.id} value={option.id}>{option.name} </MenuItem>
+                    <MenuItem key={option.id} value={option.id}>{option.name}{option.degree} </MenuItem>
                 ))}
             </Select>
             {meta.error && meta.touched ? (

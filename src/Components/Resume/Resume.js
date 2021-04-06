@@ -8,17 +8,17 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewGraduation } from "../../Redux/Graduation/GraduationActions";
 import { createNewWork } from "../../Redux/Work/WorkActions";
-import {updateProfileById} from "../../Requests/profile"
+import {createNewCompany } from "../../Redux/Company/CompanyActions"
+import { updateProfileById } from "../../Requests/profile"
 import { useSnackbar } from 'notistack';
 import ProfileModal from '../ProfileModal'
-
+import CompanyModel from '../CompanyModel'
 
 export default function Resume({ user, inverted, company }) {
 
   const [open, setOpen] = useState(false);
   const [openWork, setOpenWork] = useState(false);
-
-
+  const [openComp, setOpenComp] = useState(false)
   const { success } = useSelector(state => state.createGraduation)
   const dispatch = useDispatch()
 
@@ -66,7 +66,26 @@ export default function Resume({ user, inverted, company }) {
   }
 
 
-  
+  const handleCompanySubmit = (values) => {
+    const { name, address, email, information } = values;
+    console.log(values);
+    dispatch(createNewCompany({
+      name,
+      address,
+      email,
+      information,
+    }))
+    if (success) {
+      enqueueSnackbar('Success, Createed ', { variant: 'success' })
+      setOpen(false)
+
+    } else {
+      enqueueSnackbar('Oops, teed ', { variant: 'error' })
+
+    }
+  }
+
+
 
 
   return (
@@ -101,10 +120,12 @@ export default function Resume({ user, inverted, company }) {
                 </IconButton>
                 }
               </div>
+              
               {user?.work?.map((work) => (
                 <Work key={work.id} work={work} inverted={inverted} user={user} company={company} />
               ))
               }
+              {inverted && <button onClick={() => setOpenComp(true)} className="btn mt-3" style={{ color: '#fff', backgroundColor: '#149DDD' }}>Add Company</button>}
             </div>
           </div>
 
@@ -125,7 +146,14 @@ export default function Resume({ user, inverted, company }) {
         handleSubmit={handleWorkSubmit}
         company={company}
       />
-      
+      <CompanyModel
+        open={openComp}
+        setOpen={setOpenComp}
+        title='Create New Company'
+        buttonTitle='Create'
+        handleSubmit={handleCompanySubmit}
+      />
+
     </>
   )
 }

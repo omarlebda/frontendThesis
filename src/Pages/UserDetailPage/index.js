@@ -38,7 +38,7 @@ export default function UserDetails({ match }) {
             <main id="main">
                 <About key={user.id} user={user} inverted={inverted} />
                 <Resume key={user.id} user={user} inverted={inverted} company={company} />
-                <GraduationProject key={user.id} user={user} />
+                <GraduationProject key={user.id} user={user} inverted={inverted} />
             </main>
             <EducationModal />
         </Fragment>
