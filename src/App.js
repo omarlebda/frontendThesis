@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar/Navbar'
 import LoginScreen from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import { SnackbarProvider, useSnackbar } from "notistack";
+import HomePage from './Components/HomePage';
 
 
 
@@ -24,7 +25,8 @@ function App() {
     }}
       >
        <Switch>
-          <Route exact path='/' component={Users} />
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/users' component={Users}  />
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/register' component={RegisterPage} />
           <Route  path='/:id' component={UserDetails} />
