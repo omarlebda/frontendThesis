@@ -23,7 +23,9 @@ export default function UserDetails({ match }) {
     const { currentUser } = useSelector(state => state.auth)
 
     useEffect(() => {
-        fetchUserById(id).then(res => setUser(res)).catch(err => setUserError(err))
+        if (id) {
+            fetchUserById(id).then(res => setUser(res)).catch(err => setUserError(err))
+        }
     }, [id])
 
     useEffect(() => {
