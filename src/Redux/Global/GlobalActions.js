@@ -13,7 +13,8 @@ import {
     RESET_EDIT_GRADUATION,
     RESET_EDIT_WORK,
     RESET_UPDATE_PROFILE,
-    UPDATE_PROFILE
+    UPDATE_PROFILE,
+    RESET_DELETE_GRADUATION
 } from './GlobalTypes'
 
 export const updateProfile = () => ({

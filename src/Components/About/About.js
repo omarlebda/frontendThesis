@@ -2,16 +2,16 @@ import ProfileModal from '../ProfileModal'
 import { updateProfileById } from "../../Requests/profile"
 import { useSnackbar } from 'notistack';
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { IconButton } from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
+import { updateProfile } from '../../Redux/Global/GlobalActions';
 
 export default function About({ user, inverted }) {
 
     const [openProfileDetail, setOpenProfileDetail] = useState(false);
     const dispatch = useDispatch()
-    const { enqueueSnackbar } = useSnackbar();
+        const { enqueueSnackbar } = useSnackbar();
     const handleProfileUpdate = (values) => {
         const {
             email,
@@ -27,8 +27,8 @@ export default function About({ user, inverted }) {
             linkedin_link,
             first_name,
             last_name } = values;
-        console.log(values);
-        dispatch(updateProfileById(user?.id, {
+            
+        updateProfileById(user?.id, {
             email,
             phone_number,
             bio,
@@ -42,9 +42,14 @@ export default function About({ user, inverted }) {
             linkedin_link,
             first_name,
             last_name
-        })).then(res => {
+        }).then(res => {
+            dispatch(updateProfile())
             enqueueSnackbar('Success, You Updated ', { variant: 'success' })
-        }).catch(err => console.log(err))
+        }).catch(err => {
+
+            enqueueSnackbar('Oops, something went wrong ', { variant: 'error' })
+        })
+       
         setOpenProfileDetail(false)
     }
     return (

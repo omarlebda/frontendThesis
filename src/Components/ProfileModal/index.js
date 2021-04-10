@@ -36,7 +36,6 @@ const validationSchema = Yup.object({
 export default function WorkModal({ title, buttonTitle, handleSubmit, open, setOpen, data, user }) {
 
 
-    const [selectedValue, setSelectedValue] = useState('')
 
     const handleClose = () => {
         setOpen(false);
@@ -76,7 +75,7 @@ export default function WorkModal({ title, buttonTitle, handleSubmit, open, setO
                         onSubmit={(values) => handleSubmit(values)}
 
                     >
-                        {({ dirty, isSubmitting, isValid, values }) => (
+                        {({ dirty, isSubmitting, isValid,  }) => (
 
                             <Form className='flex_col' autoComplete='off' style={{ width: 400 }}>
                                 <FromText label="First Name" name='first_name' />
@@ -94,7 +93,7 @@ export default function WorkModal({ title, buttonTitle, handleSubmit, open, setO
                                 <FromText label="LinkedIn Link" name='linkedin_link' />
 
                                 <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
-                                    <Button type='submit' color="primary" disabled={!dirty || !isValid || isSubmitting}>
+                                    <Button type='submit' color="primary" disabled={!isValid || isSubmitting}>
                                         {buttonTitle}
                                     </Button>
                                 </div>
