@@ -7,16 +7,19 @@ import { deleteWorkById, updateWorkById } from '../../Requests/work';
 import WordModal from '../WorkModal'
 
 import { useSnackbar } from 'notistack';
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { setNestedObjectValues } from 'formik';
+import { deleteWork, updateWork } from '../../Redux/Global/GlobalActions';
 export default function Work({ work, inverted, user, company }) {
 
     const { enqueueSnackbar } = useSnackbar();
     const [open, setOpen] = useState(false)
-
+    const dispatch = useDispatch()
     const handleDeleteWork = () => {
         deleteWorkById(work?.id).then(res => {
             enqueueSnackbar('Success, You Deleted ', { variant: 'error' })
+            dispatch(deleteWork())
         }).catch(err => console.log(err))
     }
 
@@ -30,6 +33,7 @@ export default function Work({ work, inverted, user, company }) {
             company
         }).then(res => {
             enqueueSnackbar('Success, You Updated ', { variant: 'success' })
+            dispatch(updateWork())
         }).catch(err => console.log(err))
         setOpen(false)
     }

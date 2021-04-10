@@ -8,11 +8,14 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewGraduation } from "../../Redux/Graduation/GraduationActions";
 import { createNewWork } from "../../Redux/Work/WorkActions";
-import {createNewCompany } from "../../Redux/Company/CompanyActions"
+import { createNewCompany } from "../../Redux/Company/CompanyActions"
 import { updateProfileById } from "../../Requests/profile"
 import { useSnackbar } from 'notistack';
 import ProfileModal from '../ProfileModal'
 import CompanyModel from '../CompanyModel'
+import { createGraduation, createWork } from "../../Redux/Global/GlobalActions";
+
+
 
 export default function Resume({ user, inverted, company }) {
 
@@ -20,6 +23,7 @@ export default function Resume({ user, inverted, company }) {
   const [openWork, setOpenWork] = useState(false);
   const [openComp, setOpenComp] = useState(false)
   const { success } = useSelector(state => state.createGraduation)
+  const { successWork } = useSelector(state => state.work)
   const dispatch = useDispatch()
 
   const { enqueueSnackbar } = useSnackbar();
@@ -37,6 +41,7 @@ export default function Resume({ user, inverted, company }) {
     }))
     if (success) {
       enqueueSnackbar('Success, Createed ', { variant: 'success' })
+      dispatch(createGraduation())
       setOpen(false)
 
     } else {
@@ -55,8 +60,9 @@ export default function Resume({ user, inverted, company }) {
       endDate,
       company,
     }))
-    if (success) {
+    if (successWork) {
       enqueueSnackbar('Success, Createed ', { variant: 'success' })
+      dispatch(createWork())
       setOpen(false)
 
     } else {
@@ -120,7 +126,7 @@ export default function Resume({ user, inverted, company }) {
                 </IconButton>
                 }
               </div>
-              
+
               {user?.work?.map((work) => (
                 <Work key={work.id} work={work} inverted={inverted} user={user} company={company} />
               ))

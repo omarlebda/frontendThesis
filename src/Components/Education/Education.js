@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { setNestedObjectValues } from 'formik';
 import { useDispatch } from "react-redux";
-import { updateGraduation } from "../../Redux/Global/GlobalActions";
+import { updateGraduation, deleteGraduation } from "../../Redux/Global/GlobalActions";
 
 export default function Education({ graduation, inverted, user }) {
     const { enqueueSnackbar } = useSnackbar();
@@ -17,6 +17,7 @@ export default function Education({ graduation, inverted, user }) {
     const handleDeleteGraduation = () => {
         deleteGraduationById(graduation?.id).then(res => {
             enqueueSnackbar('Success, You Deleted ', { variant: 'error' })
+            dispatch(deleteGraduation())
         }).catch(err => console.log(err))
 
     }

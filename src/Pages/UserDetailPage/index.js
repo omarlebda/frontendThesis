@@ -10,7 +10,7 @@ import About from "../../Components/About/About"
 import GraduationProject from "../../Components/GraduationProject/GraduationProject"
 import { useDispatch, useSelector } from "react-redux"
 import EducationModal from "../../Components/EducationModal"
-import { resetUpdateProfile, resetUpdateGraduation } from "../../Redux/Global/GlobalActions";
+import { resetUpdateProfile, resetCreateGraduation, resetUpdateGraduation, resetDeleteGraduation, resetCreateWork, resetUpdateWork, resetDeleteWork } from "../../Redux/Global/GlobalActions";
 
 
 
@@ -19,7 +19,7 @@ export default function UserDetails({ match }) {
     const [user, setUser] = useState({})
     const [company, setCompany] = useState({})
     const [userError, setUserError] = useState([])
-    const { isProfileEdited, isGraduationUpdated } = useSelector(state => state.global)
+    const { isProfileEdited, isGraduationCreated, isGraduationUpdated, isGraduationDeleted, isWorkCreated, isWorkUpdated, isWorkDeleted } = useSelector(state => state.global)
     const { currentUser } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
@@ -33,12 +33,37 @@ export default function UserDetails({ match }) {
                 dispatch(resetUpdateProfile())
             }, 1000);
         }
+        if (isGraduationCreated) {
+            setTimeout(() => {
+                dispatch(resetCreateGraduation())
+            }, 1000);
+        }
         if (isGraduationUpdated) {
             setTimeout(() => {
                 dispatch(resetUpdateGraduation())
             }, 1000);
         }
-    }, [id, isProfileEdited, isGraduationUpdated])
+        if (isGraduationDeleted) {
+            setTimeout(() => {
+                dispatch(resetDeleteGraduation())
+            }, 1000);
+        }
+        if (isWorkCreated) {
+            setTimeout(() => {
+                dispatch(resetCreateWork())
+            }, 1000);
+        }
+        if (isWorkUpdated) {
+            setTimeout(() => {
+                dispatch(resetUpdateWork())
+            }, 1000);
+        }
+        if (isWorkDeleted) {
+            setTimeout(() => {
+                dispatch(resetDeleteWork())
+            }, 1000);
+        }
+    }, [id, isProfileEdited, isGraduationCreated, isGraduationUpdated, isGraduationDeleted, isWorkCreated, isWorkUpdated, isWorkDeleted])
 
     useEffect(() => {
         fetchCompanies().then(res => setCompany(res)).catch(err => setUserError(err))
