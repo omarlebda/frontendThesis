@@ -32,11 +32,11 @@ export default function UserDetails({ match }) {
             setTimeout(() => {
                 dispatch(resetUpdateProfile())
             }, 1000);
-            if (isGraduationUpdated) {
-                setTimeout(() => {
-                    dispatch(resetUpdateGraduation())
-                }, 1000);
-            }
+        }
+        if (isGraduationUpdated) {
+            setTimeout(() => {
+                dispatch(resetUpdateGraduation())
+            }, 1000);
         }
     }, [id, isProfileEdited, isGraduationUpdated])
 
