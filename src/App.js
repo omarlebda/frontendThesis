@@ -9,6 +9,7 @@ import LoginScreen from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import { SnackbarProvider, useSnackbar } from "notistack";
 import HomePage from './Components/HomePage';
+import SearchUsers from './Pages/SearchUsers';
 
 
 
@@ -29,7 +30,8 @@ function App() {
           <Route exact path='/users' component={Users}  />
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/register' component={RegisterPage} />
-          <Route  path='/:id' component={UserDetails} />
+          <Route exact  path='/:id' component={UserDetails} />
+          <Route path='/search/:keyword' component={SearchUsers} />
        </Switch>
 
       </SnackbarProvider>

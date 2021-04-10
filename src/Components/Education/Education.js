@@ -6,17 +6,22 @@ import EducationModal from '../EducationModal'
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { setNestedObjectValues } from 'formik';
+import { useDispatch } from "react-redux";
+import { updateGraduation } from "../../Redux/Global/GlobalActions";
 
 export default function Education({ graduation, inverted, user }) {
     const { enqueueSnackbar } = useSnackbar();
     const [open, setOpen] = useState(false)
+    const dispatch = useDispatch()
 
     const handleDeleteGraduation = () => {
         deleteGraduationById(graduation?.id).then(res => {
             enqueueSnackbar('Success, You Deleted ', { variant: 'error' })
         }).catch(err => console.log(err))
-        
+
     }
+
+
 
 
     const handleUpdateGraduation = (values) => {
@@ -31,6 +36,7 @@ export default function Education({ graduation, inverted, user }) {
             yearOfGraduation
         }).then(res => {
             enqueueSnackbar('Success, You Updated ', { variant: 'success' })
+            dispatch(updateGraduation())
         }).catch(err => console.log(err))
         setOpen(false)
     }

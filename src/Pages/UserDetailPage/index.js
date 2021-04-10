@@ -10,7 +10,7 @@ import About from "../../Components/About/About"
 import GraduationProject from "../../Components/GraduationProject/GraduationProject"
 import { useDispatch, useSelector } from "react-redux"
 import EducationModal from "../../Components/EducationModal"
-import { resetUpdateProfile } from "../../Redux/Global/GlobalActions";
+import { resetUpdateProfile, resetUpdateGraduation } from "../../Redux/Global/GlobalActions";
 
 
 
@@ -19,19 +19,26 @@ export default function UserDetails({ match }) {
     const [user, setUser] = useState({})
     const [company, setCompany] = useState({})
     const [userError, setUserError] = useState([])
-    const { isProfileEdited  } =useSelector(state => state.global)
+    const { isProfileEdited, isGraduationUpdated } = useSelector(state => state.global)
     const { currentUser } = useSelector(state => state.auth)
     const dispatch = useDispatch()
-    
+
 
     useEffect(() => {
         if (id) {
             fetchUserById(id).then(res => setUser(res)).catch(err => setUserError(err))
         }
-        setTimeout(() => {
-            dispatch(resetUpdateProfile())
-        }, 1000);
-    }, [id, isProfileEdited])
+        if (isProfileEdited) {
+            setTimeout(() => {
+                dispatch(resetUpdateProfile())
+            }, 1000);
+            if (isGraduationUpdated) {
+                setTimeout(() => {
+                    dispatch(resetUpdateGraduation())
+                }, 1000);
+            }
+        }
+    }, [id, isProfileEdited, isGraduationUpdated])
 
     useEffect(() => {
         fetchCompanies().then(res => setCompany(res)).catch(err => setUserError(err))
