@@ -45,6 +45,7 @@ export default function GraduationProject({ user, inverted }) {
           </div>
 
           <div class="row">
+
             {user?.graduation?.map((graduation) => (
               graduation?.grad_project?.title && <ProjectSection key={graduation.id} graduation={graduation} inverted={inverted} user={user} />
             ))

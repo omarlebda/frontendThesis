@@ -15,24 +15,25 @@ import SearchUsers from './Pages/SearchUsers';
 
 function App() {
 
-  
+
 
   return (
     <div className="App" >
+      <Navbar />
       <SnackbarProvider
-       anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-    }}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
       >
-       <Switch>
+        <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/users' component={Users}  />
+          <Route exact path='/users' component={Users} />
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/register' component={RegisterPage} />
-          <Route exact  path='/:id' component={UserDetails} />
+          <Route exact path='/:id' component={UserDetails} />
           <Route path='/search/:keyword' component={SearchUsers} />
-       </Switch>
+        </Switch>
 
       </SnackbarProvider>
     </div>
