@@ -1,20 +1,26 @@
 import {
     CREATE_COMPANY,
     CREATE_GRADUATION,
+    CREATE_GRADUATION_PROJECT,
     CREATE_WORK,
     DELETE_GRADUATION,
+    DELETE_GRADUATION_PROJECT,
     DELETE_WORK,
     EDIT_GRADUATION,
+    EDIT_GRADUATION_PROJECT,
     EDIT_WORK,
+    RESET_CREATE_COMPANY,
     RESET_CREATE_GRADUATION,
+    RESET_CREATE_GRADUATION_PROJECT,
     RESET_CREATE_WORK,
     RESET_DELETE_WORK,
     RESET_EDIT_GRADUATION,
+    RESET_EDIT_GRADUATION_PROJECT,
     RESET_EDIT_WORK,
     RESET_UPDATE_PROFILE,
     UPDATE_PROFILE,
-    RESET_CREATE_COMPANY,
-    RESET_DELETE_GRADUATION
+    RESET_DELETE_GRADUATION,
+    RESET_DELETE_GRADUATION_PROJECT
 } from './GlobalTypes'
 
 const initialState = {
@@ -26,6 +32,9 @@ const initialState = {
     isWorkUpdated: false,
     isWorkDeleted: false,
     isCompanyCreated: false,
+    isGraduationProjectCreated: false,
+    isGraduationProjectUpdated: false,
+    isGraduationProjectDeleted: false,
 }
 
 
@@ -63,7 +72,18 @@ const globalReducer = (state = initialState, { type }) => {
             return { isCompanyCreated: true }
         case RESET_CREATE_COMPANY:
             return { isCompanyCreated: false }
-
+        case CREATE_GRADUATION_PROJECT:
+            return { isGraduationProjectCreated: true }
+        case RESET_CREATE_GRADUATION_PROJECT:
+            return { isGraduationProjectCreated: false }
+        case EDIT_GRADUATION_PROJECT:
+            return { isGraduationProjectUpdated: true }
+        case RESET_EDIT_GRADUATION_PROJECT:
+            return { isGraduationProjectUpdated: false }
+        case DELETE_GRADUATION_PROJECT:
+            return { isGraduationProjectDeleted: true }
+        case RESET_DELETE_GRADUATION_PROJECT:
+            return { isGraduationProjectDeleted: false }
         default: return state
     }
 }

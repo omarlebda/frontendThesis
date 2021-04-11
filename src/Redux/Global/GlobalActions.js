@@ -1,20 +1,26 @@
 import {
     CREATE_COMPANY,
     CREATE_GRADUATION,
+    CREATE_GRADUATION_PROJECT,
     CREATE_WORK,
     DELETE_GRADUATION,
+    DELETE_GRADUATION_PROJECT,
     DELETE_WORK,
     EDIT_GRADUATION,
+    EDIT_GRADUATION_PROJECT,
     EDIT_WORK,
     RESET_CREATE_COMPANY,
     RESET_CREATE_GRADUATION,
+    RESET_CREATE_GRADUATION_PROJECT,
     RESET_CREATE_WORK,
     RESET_DELETE_WORK,
     RESET_EDIT_GRADUATION,
+    RESET_EDIT_GRADUATION_PROJECT,
     RESET_EDIT_WORK,
     RESET_UPDATE_PROFILE,
     UPDATE_PROFILE,
-    RESET_DELETE_GRADUATION
+    RESET_DELETE_GRADUATION,
+    RESET_DELETE_GRADUATION_PROJECT
 } from './GlobalTypes'
 
 export const updateProfile = () => ({
@@ -81,5 +87,32 @@ export const createCompany = () => ({
 
 export const resetCreateCompany = () => ({
     type: RESET_CREATE_COMPANY
+})
+
+
+
+
+export const createGraduationProject = () => ({
+    type: CREATE_GRADUATION_PROJECT
+})
+
+export const resetCreateGraduationProject = () => ({
+    type: RESET_CREATE_GRADUATION_PROJECT
+})
+
+export const updateGraduationProject = () => ({
+    type: EDIT_GRADUATION_PROJECT
+})
+
+export const resetUpdateGraduationProject = () => ({
+    type: RESET_EDIT_GRADUATION_PROJECT
+})
+
+export const deleteGraduationProject = () => ({
+    type: DELETE_GRADUATION_PROJECT
+})
+
+export const resetDeleteGraduationProject = () => ({
+    type: RESET_DELETE_GRADUATION_PROJECT
 })
 

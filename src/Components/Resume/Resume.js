@@ -13,7 +13,7 @@ import { updateProfileById } from "../../Requests/profile"
 import { useSnackbar } from 'notistack';
 import ProfileModal from '../ProfileModal'
 import CompanyModel from '../CompanyModel'
-import { createGraduation, createWork } from "../../Redux/Global/GlobalActions";
+import { createCompany, createGraduation, createWork } from "../../Redux/Global/GlobalActions";
 
 
 
@@ -74,15 +74,11 @@ export default function Resume({ user, inverted, company }) {
       address,
       email,
       information,
-    }))
-    if (success) {
+    })).then(res => {
       enqueueSnackbar('Success, Createed ', { variant: 'success' })
-      setOpen(false)
-
-    } else {
-      enqueueSnackbar('Oops, teed ', { variant: 'error' })
-
-    }
+      setOpenComp(false)
+      dispatch(createCompany())
+    }).catch(err => enqueueSnackbar('Oops, teed ', { variant: 'error' }))
   }
 
 

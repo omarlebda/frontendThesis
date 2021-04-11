@@ -6,6 +6,7 @@ import GraduationProjectModal from "../GraduationProjectModal";
 import { createNewGraduationProject } from "../../Redux/GraduationProject/GraduationProjectActions"
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from 'notistack';
+import { createGraduationProject } from "../../Redux/Global/GlobalActions";
 
 
 
@@ -23,7 +24,8 @@ export default function GraduationProject({ user, inverted }) {
       graduation,
     })).then(res => {
       enqueueSnackbar('Success, You Created ', { variant: 'success' })
-    }).catch(err => console.log(err))
+      dispatch(createGraduationProject())
+    }).catch(err => enqueueSnackbar('Oops, teed ', { variant: 'error' }))
     setOpen(false)
   }
   return (

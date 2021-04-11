@@ -6,13 +6,20 @@ import { IconButton } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import GraduationProjectModal from "../GraduationProjectModal";
 import { deleteGraduationProjectById, updateGraduationProjectById } from '../../Requests/graduation';
+import { updateGraduationProject, deleteGraduationProject } from "../../Redux/Global/GlobalActions";
+import { useDispatch, useSelector } from "react-redux";
+
+
+
 export default function ProjectSection({ graduation, inverted, user }) {
 
     const [open, setOpen] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
+    const dispatch = useDispatch()
     const handleDeleteGraduationProject = () => {
         deleteGraduationProjectById(graduation?.grad_project?.pk).then(res => {
             enqueueSnackbar('Success, You Deleted ', { variant: 'error' })
+            dispatch(deleteGraduationProject())
         }).catch(err => console.log(err))
     }
     const gradProjId = graduation?.grad_project?.pk
@@ -26,6 +33,7 @@ export default function ProjectSection({ graduation, inverted, user }) {
             graduation
         }).then(res => {
             enqueueSnackbar('Success, You Updated ', { variant: 'success' })
+            dispatch(updateGraduationProject())
         }).catch(err => console.log(err))
         setOpen(false)
     }
