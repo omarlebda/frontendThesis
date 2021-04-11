@@ -46,7 +46,6 @@ export default function Resume({ user, inverted, company }) {
 
     } else {
       enqueueSnackbar('Oops, teed ', { variant: 'error' })
-
     }
   }
 
@@ -59,16 +58,11 @@ export default function Resume({ user, inverted, company }) {
       startDate,
       endDate,
       company,
-    }))
-    if (successWork) {
+    })).then(res => {
       enqueueSnackbar('Success, Createed ', { variant: 'success' })
       dispatch(createWork())
-      setOpen(false)
-
-    } else {
-      enqueueSnackbar('Oops, teed ', { variant: 'error' })
-
-    }
+      setOpenWork(false)
+    }).catch(err => enqueueSnackbar('Oops, teed ', { variant: 'error' }))
   }
 
 
