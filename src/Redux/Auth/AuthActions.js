@@ -6,7 +6,8 @@ import {
     USER_LOGOUT,
     USER_REGISTRATION_REQUEST,
     USER_REGISTRATION_SUCCESS,
-    USER_REGISTRATION_ERROR
+    USER_REGISTRATION_ERROR,
+    USER_LOGIN_SAVE_VALUES
 } from './AuthTypes'
 import { baseURL } from '../../Requests/config'
 
@@ -17,6 +18,7 @@ export const userLogin = (values) => async (dispatch) => {
         // const { data } = await axios.post(`${baseURL}/api/v1/rest-auth/login/`, values)
         const { data } = await axios.post(`${baseURL}/users/authenticate/`, values)
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
+        // dispatch(({type : USER_LOGIN_SAVE_VALUES, payload: values}))
     } catch (error) {
         dispatch({ type: USER_LOGIN_ERROR, payload: error })
     }
@@ -25,6 +27,8 @@ export const userLogin = (values) => async (dispatch) => {
 export const userLogout = () => ({
     type: USER_LOGOUT
 })
+
+
 
 export const userRegistration = (values) => async (dispatch) => {
     try {

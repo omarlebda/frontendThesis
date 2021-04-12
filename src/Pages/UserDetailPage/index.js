@@ -91,7 +91,7 @@ export default function UserDetails({ match }) {
     const inverted = user?.user_id === currentUser?.id ? true : false
     return (
         <Fragment>
-            <Header key={user.id} user={user} />
+            {/* <Header key={user.id} user={user} /> */}
             <ToggleButton />
             <Hero key={user.id} user={user} />
             <main id="main">

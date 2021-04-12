@@ -44,7 +44,7 @@ export default function GraduationProject({ user, inverted }) {
             </div>
           </div>
 
-          <div class="row">
+          <div className="flex">
 
             {user?.graduation?.map((graduation) => (
               graduation?.grad_project?.title && <ProjectSection key={graduation.id} graduation={graduation} inverted={inverted} user={user} />

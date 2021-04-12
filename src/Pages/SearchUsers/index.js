@@ -3,6 +3,7 @@ import { fetchUsers } from '../../Requests/profile'
 import Card from '../../Components/Card'
 import SearchResult from '../../Components/SearchResult'
 import Typography from '@material-ui/core/Typography';
+import { Container } from '@material-ui/core';
 
 
 export default function SearchUsers({ match }) {
@@ -24,12 +25,15 @@ export default function SearchUsers({ match }) {
     console.log(searchResult)
     return (
         <>
-            <Typography variant="h3" gutterBottom style={{ textAlign: 'center' }}>
+            <Typography variant="h3" gutterBottom style={{ textAlign: 'center', paddingTop: 100 }}>
                 Search Results
             </Typography>
-            <div className='flex_wrap'>
-                {searchResult?.map(user => <SearchResult key={user.id} user={user} />)}
-            </div>
+            <Container>
+                <div className='flex'>
+                    {searchResult?.map(user => <SearchResult key={user.id} user={user} />)}
+                </div>
+
+            </Container>
         </>
     )
 }

@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-#header {
+/* #header {
   position: fixed;
   top: 0;
   left: 0;
@@ -118,10 +118,11 @@ h1, h2, h3, h4, h5, h6 {
   background: #149ddd;
   color: #fff;
   text-decoration: none;
-}
+} */
 
 #main {
-  margin-left: 300px;
+  /* margin-left: 300px; */
+  margin: 0 auto;
 }
 
 @media (max-width: 1199px) {

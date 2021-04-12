@@ -1,16 +1,16 @@
 
 
-export default function Header({user}) {
+export default function Header({ user }) {
 
 
     return (
-        
-        
-        
-        <header id="header">
+
+
+
+        <header id="header" style={{ top: 55 }}>
             <div class="d-flex flex-column">
                 <div class="profile">
-                    <img src={user.profile_pic} alt="" class="img-fluid rounded-circle"/>
+                    <img src={user.profile_pic} alt="" class="img-fluid rounded-circle" />
                     <h1 class="text-light"><a href="index.html">{user.username}</a></h1>
                     <div class="social-links mt-3 text-center">
                         <a href={user.twitter_link} class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -21,7 +21,7 @@ export default function Header({user}) {
                     </div>
                 </div>
 
-                <nav id="navbar" class="nav-menu navbar">
+                <nav id="navbar" class="nav-menu navbar" >
                     <ul>
                         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
                         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
@@ -34,6 +34,6 @@ export default function Header({user}) {
             </div>
         </header>
 
-        
+
     )
 }

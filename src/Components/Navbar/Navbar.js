@@ -2,15 +2,26 @@ import { useEffect, useState } from "react"
 import { userLogout } from "../../Redux/Auth/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { fetchUserById } from "../../Requests/profile"
 
 export default function Navbar() {
     const [users, setUsers] = useState([])
     const { isAuthenticated } = useSelector(state => state.auth)
+    const { currentUser } = useSelector(state => state.auth)
     const dispatch = useDispatch()
+    const [user, setUser] = useState({})
+    const [userError, setUserError] = useState([])
+
+    const curUserId = currentUser?.id
+    if (curUserId) {
+        fetchUserById(curUserId).then(res => setUser(res)).catch(err => setUserError(err))
+        console.log(user, 'usr')
+    }
+    console.log(curUserId)
     let history = useHistory();
     return (
 
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom" style={{ backgroundColor: '#040B14 !important' }}>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom" style={{ width: '100%', height: '55px', backgroundColor: '#040B14 !important', position: 'absolute', zIndex: 1000 }}>
             <a class="navbar-brand" href="#">HITs</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,7 +38,7 @@ export default function Navbar() {
                         }}>Logout</a>
                     </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" onClick={() => history.push(`/${user.id}`)}>Profile</a>
                         </li>
                     </> : <> <li class="nav-item">
                         <a class="nav-link" onClick={() => history.push(`/login`)}>Login</a>

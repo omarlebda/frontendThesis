@@ -10,11 +10,37 @@ import RegisterPage from './Pages/RegisterPage';
 import { SnackbarProvider, useSnackbar } from "notistack";
 import HomePage from './Components/HomePage';
 import SearchUsers from './Pages/SearchUsers';
+import { useSelector } from 'react-redux';
+import Loading from './Components/Loading/Loading';
 
 
 
 function App() {
 
+//   const {isAuthenticated, saveValues} = useSelector(state => state.auth)
+//   const [users, setUsers] = useState(null);
+
+//   useEffect(()=>{
+//     if(!isAuthenticated) return;
+//     fetchUsers()
+//     .then(res => {
+//       setUsers(res)
+//     })
+//     .catch(err => console.log(err))
+//   },[isAuthenticated])
+
+//   useEffect(() =>{
+//     if(users?.length > 1){
+//       const userValues = users.find(user => user.username === saveValues.username)
+//       console.log(userValues, 'va')
+//     }
+//   },[users])
+
+// console.log(saveValues?.username)
+
+
+//   if (users?.length < 1) return <Loading />
+  
 
 
   return (

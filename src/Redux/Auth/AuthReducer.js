@@ -5,7 +5,8 @@ import {
     USER_LOGOUT,
     USER_REGISTRATION_REQUEST,
     USER_REGISTRATION_SUCCESS,
-    USER_REGISTRATION_ERROR
+    USER_REGISTRATION_ERROR,
+    USER_LOGIN_SAVE_VALUES
 } from './AuthTypes'
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
     currentUser: null,
     loading: false,
     error: null,
+    // saveValues: null
 }
 
 const authReducer = (state = initialState, { type, payload }) => {
@@ -30,6 +32,8 @@ const authReducer = (state = initialState, { type, payload }) => {
                 loading: false,
                 error: payload
             }
+        // case USER_LOGIN_SAVE_VALUES:
+        //     return{ saveValues : payload}
         case USER_LOGOUT:
             return {
                 isAuthenticated: false,
