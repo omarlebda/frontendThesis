@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { IconButton } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
 import { updateProfile } from '../../Redux/Global/GlobalActions';
+import UploadPhoto from '../UploadPicture';
 export default function About({ user, inverted }) {
 
     const [openProfileDetail, setOpenProfileDetail] = useState(false);
@@ -68,6 +69,7 @@ export default function About({ user, inverted }) {
                     <div class="row">
                         <div class="col-lg-4" data-aos="fade-right">
                             <img src={user.profile_pic} class="img-fluid" alt="" />
+                            <UploadPhoto />
                         </div>
                         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                             <h3 style={{ marginBottom: '50px' }}>{user.current_job}</h3>
