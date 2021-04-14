@@ -17,31 +17,34 @@ import Loading from './Components/Loading/Loading';
 
 function App() {
 
-  const {isAuthenticated, saveValues} = useSelector(state => state.auth)
+  const { isAuthenticated, saveValues } = useSelector(state => state.auth)
   const [users, setUsers] = useState(null);
   const [userId, setUserId] = useState(null)
 
-  useEffect(()=>{
-    if(!isAuthenticated) return;
+  useEffect(() => {
+    if (!isAuthenticated) return;
     fetchUsers()
-    .then(res => {
-      setUsers(res)
-    })
-    .catch(err => console.log(err))
-  },[isAuthenticated])
+      .then(res => {
+        setUsers(res)
+      })
+      .catch(err => console.log(err))
+  }, [isAuthenticated])
 
-  useEffect(() =>{
-    if(users?.length > 1){
-      const userValues = users.find(user => user.username === saveValues)
-      setUserId(userValues.id)
+  useEffect(() => {
+    if (users?.length > 1) {
+      const userValues = users?.find(user => user.username === saveValues)
+      if (userValues) {
+
+        setUserId(userValues.id)
+      }
       console.log(userValues, 'va')
     }
-  },[users])
+  }, [users])
 
-console.log(saveValues, 'll')
+  console.log(saveValues, 'll')
 
 
-  
+
 
 
   return (

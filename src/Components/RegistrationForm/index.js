@@ -10,8 +10,9 @@ import { Card } from '@material-ui/core';
 import { userRegistration } from '../../Redux/Auth/AuthActions'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { withRouter } from 'react-router';
 
-
+import { Redirect } from 'react-router-dom'
 
 const validationSchema = Yup.object({
     username: Yup.string().required(),
@@ -21,7 +22,7 @@ const validationSchema = Yup.object({
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
-export default function RegisterForm() {
+export default withRouter(function RegisterForm({ history }) {
 
 
     const dispatch = useDispatch()
@@ -34,7 +35,10 @@ export default function RegisterForm() {
             email,
             password1: password,
             password2: password
-        }))
+        })).then(res => {
+            history.push('/login')
+        }).catch(err => console.log(err))
+
     }
 
 
@@ -74,4 +78,4 @@ export default function RegisterForm() {
             </div>
         </Card>
     )
-}
+})

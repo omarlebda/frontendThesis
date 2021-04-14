@@ -11,7 +11,7 @@ import { baseURL } from '../../Requests/config';
 import { addProfilePicture } from '../../Redux/Global/GlobalActions';
 import { useDispatch } from "react-redux";
 
-function UploadPhoto({ pic, setOpen }) {
+function UploadPhoto({ pic, setOpen, user }) {
     const [image, setImage] = useState();
     const [preview, setPreview] = useState();
     const { currentUser } = useSelector(state => state.auth)
@@ -47,7 +47,7 @@ function UploadPhoto({ pic, setOpen }) {
         }
         fd.append('profile_pic', image, image.name);
 
-        axios.put(`${baseURL}/api/v1/edit_picture/1/`, fd, config)
+        axios.put(`${baseURL}/api/v1/edit_picture/${user.id}/`, fd, config)
             .then(res => {
                 console.log(res)
                 dispatch(addProfilePicture())

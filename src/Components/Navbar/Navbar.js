@@ -31,13 +31,14 @@ export default function Navbar({ id }) {
                             dispatch(userLogout())
                         }}>Logout</a>
                     </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onClick={() => {
-                                if (id) {
-                                    history.push(`/${id}`)
-                                }
-                            }} >Profile</a>
-                        </li>
+                        {id &&
+                            <li class="nav-item">
+                                <a class="nav-link" onClick={() => {
+                                    if (id) {
+                                        history.push(`/${id}`)
+                                    }
+                                }} >Profile</a>
+                            </li>}
                     </> : <> <li class="nav-item">
                         <a class="nav-link" onClick={() => history.push(`/login`)}>Login</a>
                     </li>

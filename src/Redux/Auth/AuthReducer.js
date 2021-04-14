@@ -46,10 +46,7 @@ const authReducer = (state = initialState, { type, payload }) => {
             }
         case USER_REGISTRATION_SUCCESS:
             return {
-                isAuthenticated: true,
-                currentUser: payload.data,
                 loading: false,
-                saveValues: payload.values.username
             }
         case USER_REGISTRATION_ERROR:
             return {

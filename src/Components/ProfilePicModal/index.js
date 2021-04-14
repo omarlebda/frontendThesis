@@ -12,7 +12,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 
-export default function WorkModal({ title, open, setOpen, pic }) {
+export default function WorkModal({ title, open, setOpen, pic, user }) {
 
 
     const [selectedValue, setSelectedValue] = useState('')
@@ -34,7 +34,7 @@ export default function WorkModal({ title, open, setOpen, pic }) {
             >
                 <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
                 <DialogContent>
-                <UploadPhoto setOpen={setOpen}  pic={pic} />
+                    <UploadPhoto setOpen={setOpen} pic={pic} user={user} />
                 </DialogContent>
             </Dialog>
         </div>

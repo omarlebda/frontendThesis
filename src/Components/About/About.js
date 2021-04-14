@@ -124,6 +124,7 @@ export default function About({ user, inverted }) {
                 title='Profile Picture'
                 buttonTitle='Upload'
                 pic={without_pic}
+                user={user}
             />
 
         </>
