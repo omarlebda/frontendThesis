@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { fetchUserById } from "../../Requests/profile"
 
-export default function Navbar() {
+export default function Navbar({ id }) {
     const [users, setUsers] = useState([])
     const { isAuthenticated } = useSelector(state => state.auth)
     const { currentUser } = useSelector(state => state.auth)
@@ -12,12 +12,6 @@ export default function Navbar() {
     const [user, setUser] = useState({})
     const [userError, setUserError] = useState([])
 
-    const curUserId = currentUser?.id
-    if (curUserId) {
-        fetchUserById(curUserId).then(res => setUser(res)).catch(err => setUserError(err))
-        console.log(user, 'usr')
-    }
-    console.log(curUserId)
     let history = useHistory();
     return (
 
@@ -38,7 +32,11 @@ export default function Navbar() {
                         }}>Logout</a>
                     </li>
                         <li class="nav-item">
-                            <a class="nav-link" onClick={() => history.push(`/${user.id}`)}>Profile</a>
+                            <a class="nav-link" onClick={() => {
+                                if (id) {
+                                    history.push(`/${id}`)
+                                }
+                            }} >Profile</a>
                         </li>
                     </> : <> <li class="nav-item">
                         <a class="nav-link" onClick={() => history.push(`/login`)}>Login</a>

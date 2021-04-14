@@ -14,7 +14,7 @@ const initialState = {
     currentUser: null,
     loading: false,
     error: null,
-    // saveValues: null
+    saveValues: null
 }
 
 const authReducer = (state = initialState, { type, payload }) => {
@@ -25,7 +25,8 @@ const authReducer = (state = initialState, { type, payload }) => {
             return {
                 loading: false,
                 isAuthenticated: true,
-                currentUser: payload
+                currentUser: payload.data,
+                saveValues : payload.values.username
             }
         case USER_LOGIN_ERROR:
             return {
@@ -33,7 +34,7 @@ const authReducer = (state = initialState, { type, payload }) => {
                 error: payload
             }
         // case USER_LOGIN_SAVE_VALUES:
-        //     return{ saveValues : payload}
+        //     return{ }
         case USER_LOGOUT:
             return {
                 isAuthenticated: false,

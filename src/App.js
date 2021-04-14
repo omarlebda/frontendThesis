@@ -17,35 +17,36 @@ import Loading from './Components/Loading/Loading';
 
 function App() {
 
-//   const {isAuthenticated, saveValues} = useSelector(state => state.auth)
-//   const [users, setUsers] = useState(null);
+  const {isAuthenticated, saveValues} = useSelector(state => state.auth)
+  const [users, setUsers] = useState(null);
+  const [userId, setUserId] = useState(null)
 
-//   useEffect(()=>{
-//     if(!isAuthenticated) return;
-//     fetchUsers()
-//     .then(res => {
-//       setUsers(res)
-//     })
-//     .catch(err => console.log(err))
-//   },[isAuthenticated])
+  useEffect(()=>{
+    if(!isAuthenticated) return;
+    fetchUsers()
+    .then(res => {
+      setUsers(res)
+    })
+    .catch(err => console.log(err))
+  },[isAuthenticated])
 
-//   useEffect(() =>{
-//     if(users?.length > 1){
-//       const userValues = users.find(user => user.username === saveValues.username)
-//       console.log(userValues, 'va')
-//     }
-//   },[users])
+  useEffect(() =>{
+    if(users?.length > 1){
+      const userValues = users.find(user => user.username === saveValues)
+      setUserId(userValues.id)
+      console.log(userValues, 'va')
+    }
+  },[users])
 
-// console.log(saveValues?.username)
+console.log(saveValues, 'll')
 
 
-//   if (users?.length < 1) return <Loading />
   
 
 
   return (
     <div className="App" >
-      <Navbar />
+      <Navbar id={userId} />
       <SnackbarProvider
         anchorOrigin={{
           vertical: 'bottom',

@@ -17,7 +17,7 @@ export const userLogin = (values) => async (dispatch) => {
         dispatch({ type: USER_LOGIN_REQUEST })
         // const { data } = await axios.post(`${baseURL}/api/v1/rest-auth/login/`, values)
         const { data } = await axios.post(`${baseURL}/users/authenticate/`, values)
-        dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
+        dispatch({ type: USER_LOGIN_SUCCESS, payload: {data, values} })
         // dispatch(({type : USER_LOGIN_SAVE_VALUES, payload: values}))
     } catch (error) {
         dispatch({ type: USER_LOGIN_ERROR, payload: error })

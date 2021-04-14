@@ -6,12 +6,11 @@ import { useDispatch } from "react-redux";
 import { IconButton } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
 import { updateProfile } from '../../Redux/Global/GlobalActions';
-
 export default function About({ user, inverted }) {
 
     const [openProfileDetail, setOpenProfileDetail] = useState(false);
     const dispatch = useDispatch()
-        const { enqueueSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
     const handleProfileUpdate = (values) => {
         const {
             email,
@@ -27,7 +26,7 @@ export default function About({ user, inverted }) {
             linkedin_link,
             first_name,
             last_name } = values;
-            
+
         updateProfileById(user?.id, {
             email,
             phone_number,
@@ -49,7 +48,7 @@ export default function About({ user, inverted }) {
 
             enqueueSnackbar('Oops, something went wrong ', { variant: 'error' })
         })
-       
+
         setOpenProfileDetail(false)
     }
     return (
