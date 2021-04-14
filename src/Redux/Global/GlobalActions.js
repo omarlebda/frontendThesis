@@ -20,7 +20,9 @@ import {
     RESET_UPDATE_PROFILE,
     UPDATE_PROFILE,
     RESET_DELETE_GRADUATION,
-    RESET_DELETE_GRADUATION_PROJECT
+    RESET_DELETE_GRADUATION_PROJECT,
+    ADD_PROFILE_PICTURE,
+    RESET_ADD_PROFILE_PICTURE
 } from './GlobalTypes'
 
 export const updateProfile = () => ({
@@ -116,3 +118,10 @@ export const resetDeleteGraduationProject = () => ({
     type: RESET_DELETE_GRADUATION_PROJECT
 })
 
+export const addProfilePicture = () => ({
+    type: ADD_PROFILE_PICTURE
+})
+
+export const resetAddProfilePicture = () => ({
+    type: RESET_ADD_PROFILE_PICTURE
+})

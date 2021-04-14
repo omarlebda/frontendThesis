@@ -20,7 +20,9 @@ import {
     RESET_UPDATE_PROFILE,
     UPDATE_PROFILE,
     RESET_DELETE_GRADUATION,
-    RESET_DELETE_GRADUATION_PROJECT
+    RESET_DELETE_GRADUATION_PROJECT,
+    ADD_PROFILE_PICTURE,
+    RESET_ADD_PROFILE_PICTURE
 } from './GlobalTypes'
 
 const initialState = {
@@ -35,6 +37,7 @@ const initialState = {
     isGraduationProjectCreated: false,
     isGraduationProjectUpdated: false,
     isGraduationProjectDeleted: false,
+    isProfilePictureAdded: false
 }
 
 
@@ -84,6 +87,10 @@ const globalReducer = (state = initialState, { type }) => {
             return { isGraduationProjectDeleted: true }
         case RESET_DELETE_GRADUATION_PROJECT:
             return { isGraduationProjectDeleted: false }
+        case ADD_PROFILE_PICTURE:
+            return { isProfilePictureAdded: true }
+        case RESET_ADD_PROFILE_PICTURE:
+            return { isProfilePictureAdded: false }
         default: return state
     }
 }

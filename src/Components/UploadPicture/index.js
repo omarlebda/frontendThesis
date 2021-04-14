@@ -8,14 +8,21 @@ import { IconButton } from '@material-ui/core';
 import axios from 'axios'
 import { useSelector } from 'react-redux';
 import { baseURL } from '../../Requests/config';
+import { addProfilePicture } from '../../Redux/Global/GlobalActions';
+import { useDispatch } from "react-redux";
 
-function UploadPhoto() {
+function UploadPhoto({ pic, setOpen }) {
     const [image, setImage] = useState();
     const [preview, setPreview] = useState();
     const { currentUser } = useSelector(state => state.auth)
     const fileInputRef = useRef();
     const { enqueueSnackbar } = useSnackbar();
+    const dispatch = useDispatch()
+    const handleClose = () => {
+        setOpen(false);
+    };
 
+    console.log(pic, 'pic')
     useEffect(() => {
         if (image) {
             const reader = new FileReader();
@@ -39,19 +46,25 @@ function UploadPhoto() {
             },
         }
         fd.append('profile_pic', image, image.name);
+
         axios.put(`${baseURL}/api/v1/edit_picture/1/`, fd, config)
             .then(res => {
                 console.log(res)
+                dispatch(addProfilePicture())
                 enqueueSnackbar('Success, Photo has been Uploaded', { variant: 'success' });
+                setOpen(false)
             })
             .catch(error => {
                 console.log(error)
                 enqueueSnackbar('Oops, Sorry try again :)', { variant: 'error' });
+                setOpen(false)
             })
+
+
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{ margin: '50px' }}>
             <form>
                 {preview ? (
                     <img

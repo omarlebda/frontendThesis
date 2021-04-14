@@ -10,7 +10,7 @@ import About from "../../Components/About/About"
 import GraduationProject from "../../Components/GraduationProject/GraduationProject"
 import { useDispatch, useSelector } from "react-redux"
 import EducationModal from "../../Components/EducationModal"
-import { resetUpdateProfile, resetCreateGraduation, resetUpdateGraduation, resetDeleteGraduation, resetCreateWork, resetUpdateWork, resetDeleteWork, resetCreateCompany, resetCreateGraduationProject, resetUpdateGraduationProject, resetDeleteGraduationProject } from "../../Redux/Global/GlobalActions";
+import { resetAddProfilePicture, resetUpdateProfile, resetCreateGraduation, resetUpdateGraduation, resetDeleteGraduation, resetCreateWork, resetUpdateWork, resetDeleteWork, resetCreateCompany, resetCreateGraduationProject, resetUpdateGraduationProject, resetDeleteGraduationProject } from "../../Redux/Global/GlobalActions";
 
 
 
@@ -19,7 +19,7 @@ export default function UserDetails({ match }) {
     const [user, setUser] = useState({})
     const [company, setCompany] = useState({})
     const [userError, setUserError] = useState([])
-    const { isProfileEdited, isGraduationCreated, isGraduationUpdated, isGraduationDeleted, isWorkCreated, isWorkUpdated, isWorkDeleted, isCompanyCreated, isGraduationProjectCreated, isGraduationProjectUpdated, isGraduationProjectDeleted } = useSelector(state => state.global)
+    const { isProfileEdited, isGraduationCreated, isGraduationUpdated, isGraduationDeleted, isWorkCreated, isWorkUpdated, isWorkDeleted, isCompanyCreated, isGraduationProjectCreated, isGraduationProjectUpdated, isGraduationProjectDeleted, isProfilePictureAdded } = useSelector(state => state.global)
     const { currentUser } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
@@ -83,7 +83,12 @@ export default function UserDetails({ match }) {
                 dispatch(resetDeleteGraduationProject())
             }, 1000);
         }
-    }, [id, isProfileEdited, isGraduationCreated, isGraduationUpdated, isGraduationDeleted, isWorkCreated, isWorkUpdated, isWorkDeleted, isCompanyCreated, isGraduationProjectCreated, isGraduationProjectUpdated, isGraduationProjectDeleted])
+        if (isProfilePictureAdded) {
+            setTimeout(() => {
+                dispatch(resetAddProfilePicture())
+            }, 1000);
+        }
+    }, [id, isProfileEdited, isGraduationCreated, isGraduationUpdated, isGraduationDeleted, isWorkCreated, isWorkUpdated, isWorkDeleted, isCompanyCreated, isGraduationProjectCreated, isGraduationProjectUpdated, isGraduationProjectDeleted, isProfilePictureAdded])
 
     useEffect(() => {
         fetchCompanies().then(res => setCompany(res)).catch(err => setUserError(err))

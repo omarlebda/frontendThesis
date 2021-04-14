@@ -1,15 +1,17 @@
 import ProfileModal from '../ProfileModal'
+import ProfilePicModal from '../ProfilePicModal'
 import { updateProfileById } from "../../Requests/profile"
 import { useSnackbar } from 'notistack';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { IconButton } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
 import { updateProfile } from '../../Redux/Global/GlobalActions';
 import UploadPhoto from '../UploadPicture';
 export default function About({ user, inverted }) {
 
     const [openProfileDetail, setOpenProfileDetail] = useState(false);
+    const [openProfilePicture, setOpenProfilePicture] = useState(false);
     const dispatch = useDispatch()
     const { enqueueSnackbar } = useSnackbar();
     const handleProfileUpdate = (values) => {
@@ -51,6 +53,12 @@ export default function About({ user, inverted }) {
         })
 
         setOpenProfileDetail(false)
+
+
+    }
+    let without_pic = false
+    if (!user.profile_pic) {
+        without_pic = true
     }
     return (
         <>
@@ -69,7 +77,13 @@ export default function About({ user, inverted }) {
                     <div class="row">
                         <div class="col-lg-4" data-aos="fade-right">
                             <img src={user.profile_pic} class="img-fluid" alt="" />
-                            <UploadPhoto />
+                            {inverted && <Button style={{ marginTop: '15px', backgroundColor: '#149DDD' }} variant="contained" color="primary" onClick={() => setOpenProfilePicture(true)}>
+                                {
+                                    without_pic ? "Add Profile Picture" : "Edit Profile Picture"
+
+                                }
+                            </Button>}
+                            {/* <UploadPhoto pic={without_pic} /> */}
                         </div>
                         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                             <h3 style={{ marginBottom: '50px' }}>{user.current_job}</h3>
@@ -104,6 +118,14 @@ export default function About({ user, inverted }) {
                 handleSubmit={handleProfileUpdate}
                 user={user}
             />
+            <ProfilePicModal
+                open={openProfilePicture}
+                setOpen={setOpenProfilePicture}
+                title='Profile Picture'
+                buttonTitle='Upload'
+                pic={without_pic}
+            />
+
         </>
     )
 }
