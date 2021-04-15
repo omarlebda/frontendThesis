@@ -46,7 +46,7 @@ export default function About({ user, inverted }) {
             last_name
         }).then(res => {
             dispatch(updateProfile())
-            enqueueSnackbar('Success, You Updated ', { variant: 'success' })
+            enqueueSnackbar('Success, You Updated Your Profile ', { variant: 'success' })
         }).catch(err => {
 
             enqueueSnackbar('Oops, something went wrong ', { variant: 'error' })
@@ -105,6 +105,18 @@ export default function About({ user, inverted }) {
                             <p>
                                 {user.bio}
                             </p>
+
+
+
+                            <div class="social-links mt-3 text-center">
+                                <a href={user.twitter_link} class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href={user.facebook_link} class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href={user.instagram_link} class="instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href={user.skype_link} class="google-plus"><i class="bx bxl-skype"></i></a>
+                                <a href={user.linkedin_link} class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            </div>
+
+
                         </div>
                     </div>
 

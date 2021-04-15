@@ -23,9 +23,9 @@ export default function GraduationProject({ user, inverted }) {
       gitLink,
       graduation,
     })).then(res => {
-      enqueueSnackbar('Success, You Created ', { variant: 'success' })
+      enqueueSnackbar('Success, Graduation Project Created ', { variant: 'success' })
       dispatch(createGraduationProject())
-    }).catch(err => enqueueSnackbar('Oops, teed ', { variant: 'error' }))
+    }).catch(err => enqueueSnackbar('Oops, please try again ', { variant: 'error' }))
     setOpen(false)
   }
   return (

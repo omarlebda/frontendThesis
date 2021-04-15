@@ -22,7 +22,6 @@ function UploadPhoto({ pic, setOpen, user }) {
         setOpen(false);
     };
 
-    console.log(pic, 'pic')
     useEffect(() => {
         if (image) {
             const reader = new FileReader();

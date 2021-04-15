@@ -24,7 +24,6 @@ export default function Users() {
   }, [])
 
   if (users.length < 1) return <Loading />
-  console.log(users)
   return (
     <>
       {isAuthenticated && <CustomButton title='logout' onClick={() => {

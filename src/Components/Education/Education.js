@@ -16,7 +16,7 @@ export default function Education({ graduation, inverted, user }) {
 
     const handleDeleteGraduation = () => {
         deleteGraduationById(graduation?.id).then(res => {
-            enqueueSnackbar('Success, You Deleted ', { variant: 'error' })
+            enqueueSnackbar('Success, Graduation Is Deleted ', { variant: 'error' })
             dispatch(deleteGraduation())
         }).catch(err => console.log(err))
 
@@ -36,12 +36,12 @@ export default function Education({ graduation, inverted, user }) {
             groupNumber: groupNumber.toString(),
             yearOfGraduation
         }).then(res => {
-            enqueueSnackbar('Success, You Updated ', { variant: 'success' })
+            enqueueSnackbar('Success, You Updated Your Graduation', { variant: 'success' })
             dispatch(updateGraduation())
         }).catch(err => console.log(err))
         setOpen(false)
     }
-    console.log(graduation, 'graduation')
+
 
     return (
         <>

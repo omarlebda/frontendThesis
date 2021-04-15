@@ -16,13 +16,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 const validationSchema = Yup.object({
-    faculty: Yup.string().required().min(5, 'Invalid Faculty'),
-    degree: Yup.string().required().min(4),
-    yearOfGraduation: Yup.string().required().min(4),
-    university: Yup.string().required().min(4),
-    groupNumber: Yup.number().required().min(5),
-    desc: Yup.string().required().min(14),
-
+    faculty: Yup.string().required(),
+    degree: Yup.string().required(),
+    yearOfGraduation: Yup.string().required(),
+    university: Yup.string().required(),
+    groupNumber: Yup.number().required(),
+    desc: Yup.string().required(),
 });
 
 

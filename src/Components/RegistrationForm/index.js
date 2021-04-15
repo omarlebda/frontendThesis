@@ -64,12 +64,13 @@ export default withRouter(function RegisterForm({ history }) {
                             <FromText type='password' label="password" name='password' />
                             <FromText type='password' label="confirm password" name='confirmPassword' />
                             {error && <label className='label'>{error}</label>}
-                            <div className='btn'>
+                            <div className='btn' style={{ margin: '0' }}>
                                 <CustomButton
                                     disabled={!dirty || !isValid || isSubmitting}
                                     inverted
                                     type='submit'
                                     title='Register'
+
                                 />
                             </div>
                         </Form>

@@ -40,12 +40,12 @@ export default function Resume({ user, inverted, company }) {
       description
     }))
     if (success) {
-      enqueueSnackbar('Success, Createed ', { variant: 'success' })
+      enqueueSnackbar('Success, Graduation Createed ', { variant: 'success' })
       dispatch(createGraduation())
       setOpen(false)
 
     } else {
-      enqueueSnackbar('Oops, teed ', { variant: 'error' })
+      enqueueSnackbar('Oops, please try again ', { variant: 'error' })
     }
   }
 
@@ -59,16 +59,15 @@ export default function Resume({ user, inverted, company }) {
       endDate,
       company,
     })).then(res => {
-      enqueueSnackbar('Success, Createed ', { variant: 'success' })
+      enqueueSnackbar('Success, Work experience created ', { variant: 'success' })
       dispatch(createWork())
       setOpenWork(false)
-    }).catch(err => enqueueSnackbar('Oops, teed ', { variant: 'error' }))
+    }).catch(err => enqueueSnackbar('Oops, please try again ', { variant: 'error' }))
   }
 
 
   const handleCompanySubmit = (values) => {
     const { name, address, email, information } = values;
-    console.log(values);
     dispatch(createNewCompany({
       name,
       address,
